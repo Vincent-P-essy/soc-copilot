@@ -1,0 +1,65 @@
+{
+  "_comment": "Synthetic incident store standing in for a real incident-tracker API (TheHive / ServiceNow SIR). Each record has stable IOCs so the agent can pivot on IP / hash / domain / user.",
+  "incidents": [
+    {
+      "id": "INC-2041",
+      "created": "2026-06-14T02:11:00Z",
+      "severity": "high",
+      "status": "closed",
+      "title": "SSH brute force from Tor exit node",
+      "iocs": {"ip": ["185.220.101.44"], "user": ["admin", "root"]},
+      "technique": "T1110.001",
+      "summary": "47 failed SSH auths in 3 minutes against bastion-01 from a known Tor exit node. Source IP blocked at the edge; no successful auth."
+    },
+    {
+      "id": "INC-2035",
+      "created": "2026-05-30T18:42:00Z",
+      "severity": "medium",
+      "status": "closed",
+      "title": "Repeated auth failures from Tor exit range",
+      "iocs": {"ip": ["185.220.101.44", "185.220.101.7"], "user": ["svc_backup"]},
+      "technique": "T1110.001",
+      "summary": "Password guessing against the service account svc_backup. Account lockout policy triggered; no compromise."
+    },
+    {
+      "id": "INC-2050",
+      "created": "2026-07-01T09:05:00Z",
+      "severity": "critical",
+      "status": "open",
+      "title": "Web app SQL injection attempts",
+      "iocs": {"ip": ["45.155.205.233"], "url": ["/api/search?q="], "user": []},
+      "technique": "T1190",
+      "summary": "sqlmap fingerprints in access logs targeting the /api/search endpoint. WAF blocked union-based payloads. Investigating whether error-based payloads returned data."
+    },
+    {
+      "id": "INC-2048",
+      "created": "2026-06-28T14:20:00Z",
+      "severity": "high",
+      "status": "open",
+      "title": "Suspicious PowerShell + outbound beacon",
+      "iocs": {"ip": ["91.240.118.172"], "hash": ["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"], "user": ["j.doe"]},
+      "technique": "T1071",
+      "summary": "Endpoint j.doe-lt executed an encoded PowerShell payload followed by periodic HTTPS beacons to 91.240.118.172. Host isolated pending forensics."
+    },
+    {
+      "id": "INC-2044",
+      "created": "2026-06-20T07:33:00Z",
+      "severity": "medium",
+      "status": "closed",
+      "title": "Phishing campaign — invoice lure",
+      "iocs": {"domain": ["secure-invoice-portal.com"], "ip": ["193.42.33.19"], "user": ["a.martin", "l.chen"]},
+      "technique": "T1566",
+      "summary": "Two users received an invoice-themed phishing email linking to a credential-harvesting page. One clicked; credentials rotated proactively. Domain sinkholed."
+    },
+    {
+      "id": "INC-2052",
+      "created": "2026-07-05T22:47:00Z",
+      "severity": "high",
+      "status": "open",
+      "title": "Port scan sweep across DMZ",
+      "iocs": {"ip": ["45.155.205.233", "45.155.205.0/24"], "user": []},
+      "technique": "T1046",
+      "summary": "Sequential TCP SYN sweep across DMZ hosts from the 45.155.205.0/24 range. Same range later associated with SQLi attempts (INC-2050)."
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "_comment": "Curated slice of the MITRE ATT&CK Enterprise matrix. Not exhaustive; covers the techniques most relevant to L1 triage. Fields mirror the ATT&CK STIX schema (technique id, tactic, description, mitigations).",
+  "techniques": [
+    {
+      "id": "T1110",
+      "name": "Brute Force",
+      "tactic": "Credential Access",
+      "keywords": ["brute force", "password spray", "credential stuffing", "login", "authentication", "failed logon", "401"],
+      "description": "Adversaries use brute force techniques to gain access to accounts when passwords are unknown or when password hashes are obtained.",
+      "subtechniques": ["T1110.001", "T1110.002", "T1110.003", "T1110.004"],
+      "mitigations": ["Account lockout policies", "Multi-factor authentication", "Password policies"]
+    },
+    {
+      "id": "T1110.001",
+      "name": "Password Guessing",
+      "tactic": "Credential Access",
+      "keywords": ["password guessing", "brute force", "ssh brute", "rdp brute", "guess"],
+      "description": "Adversaries with no prior knowledge of legitimate credentials may guess passwords to attempt access to accounts, iterating through a list of common passwords.",
+      "subtechniques": [],
+      "mitigations": ["Account lockout policies", "Multi-factor authentication", "Rate limiting on authentication endpoints"]
+    },
+    {
+      "id": "T1110.003",
+      "name": "Password Spraying",
+      "tactic": "Credential Access",
+      "keywords": ["password spray", "spraying", "many users one password"],
+      "description": "Adversaries may use a single or small list of commonly used passwords against many different accounts to attempt to acquire valid credentials, avoiding account lockouts.",
+      "subtechniques": [],
+      "mitigations": ["Multi-factor authentication", "Monitor for many failed logons across accounts"]
+    },
+    {
+      "id": "T1190",
+      "name": "Exploit Public-Facing Application",
+      "tactic": "Initial Access",
+      "keywords": ["exploit", "web exploit", "sql injection", "sqli", "rce", "public facing", "vulnerability", "cve", "path traversal", "ssrf"],
+      "description": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network.",
+      "subtechniques": [],
+      "mitigations": ["Web Application Firewalls", "Vulnerability scanning", "Network segmentation", "Patch management"]
+    },
+    {
+      "id": "T1046",
+      "name": "Network Service Discovery",
+      "tactic": "Discovery",
+      "keywords": ["port scan", "nmap", "service discovery", "scanning", "recon", "sweep"],
+      "description": "Adversaries may attempt to get a listing of services running on remote hosts and local network infrastructure devices, including those that may be vulnerable to remote software exploitation.",
+      "subtechniques": [],
+      "mitigations": ["Network intrusion prevention", "Network segmentation", "Disable or remove unnecessary services"]
+    },
+    {
+      "id": "T1071",
+      "name": "Application Layer Protocol",
+      "tactic": "Command and Control",
+      "keywords": ["c2", "command and control", "beacon", "dns tunneling", "http c2", "callback"],
+      "description": "Adversaries may communicate using OSI application layer protocols to avoid detection/network filtering by blending in with existing traffic.",
+      "subtechniques": ["T1071.001", "T1071.004"],
+      "mitigations": ["Network intrusion prevention", "Filter network traffic", "DNS monitoring"]
+    },
+    {
+      "id": "T1566",
+      "name": "Phishing",
+      "tactic": "Initial Access",
+      "keywords": ["phishing", "phish", "malicious email", "spearphishing", "lure", "credential harvest"],
+      "description": "Adversaries may send phishing messages to gain access to victim systems, often via malicious attachments or links to credential-harvesting sites.",
+      "subtechniques": ["T1566.001", "T1566.002"],
+      "mitigations": ["User training", "Anti-spoofing (SPF/DKIM/DMARC)", "Email attachment / URL detonation"]
+    },
+    {
+      "id": "T1486",
+      "name": "Data Encrypted for Impact",
+      "tactic": "Impact",
+      "keywords": ["ransomware", "encryption", "ransom", "locker", "impact"],
+      "description": "Adversaries may encrypt data on target systems to interrupt availability, as commonly seen in ransomware operations.",
+      "subtechniques": [],
+      "mitigations": ["Offline backups", "Behavior prevention on endpoint", "Network segmentation"]
+    },
+    {
+      "id": "T1078",
+      "name": "Valid Accounts",
+      "tactic": "Defense Evasion",
+      "keywords": ["valid account", "compromised credentials", "legitimate login", "impossible travel", "account takeover"],
+      "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion.",
+      "subtechniques": ["T1078.004"],
+      "mitigations": ["Multi-factor authentication", "Conditional access policies", "Monitor for anomalous logins"]
+    },
+    {
+      "id": "T1048",
+      "name": "Exfiltration Over Alternative Protocol",
+      "tactic": "Exfiltration",
+      "keywords": ["exfiltration", "data exfil", "large upload", "dns exfil", "data transfer"],
+      "description": "Adversaries may steal data by exfiltrating it over a different protocol than that of the existing command and control channel.",
+      "subtechniques": [],
+      "mitigations": ["Data loss prevention", "Filter network traffic", "Network segmentation"]
+    }
+  ]
+}

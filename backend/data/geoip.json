@@ -1,0 +1,45 @@
+{
+  "_comment": "Offline geo-IP + reputation dataset standing in for a real enrichment service (ip-api.com, MaxMind, threat-intel feeds). Lookups match the exact IP first, then the /24 network. Reputation flags (tor, hosting, abuse) are illustrative but consistent with the IPs used across the incident store.",
+  "networks": [
+    {
+      "cidr": "185.220.101.0/24",
+      "country": "Germany",
+      "country_code": "DE",
+      "asn": "AS205100 F3 Netze e.V.",
+      "reputation": {"tor_exit": true, "hosting": true, "abuse_score": 92},
+      "notes": "Well-known Tor exit relay range operated by the F3/Foundation for Applied Privacy."
+    },
+    {
+      "cidr": "45.155.205.0/24",
+      "country": "Netherlands",
+      "country_code": "NL",
+      "asn": "AS204957 Serverel",
+      "reputation": {"tor_exit": false, "hosting": true, "abuse_score": 78},
+      "notes": "Bulletproof-adjacent hosting range frequently seen in scanning and web-exploitation campaigns."
+    },
+    {
+      "cidr": "91.240.118.0/24",
+      "country": "Russia",
+      "country_code": "RU",
+      "asn": "AS49505 Selectel",
+      "reputation": {"tor_exit": false, "hosting": true, "abuse_score": 85},
+      "notes": "Hosting range observed serving malware C2 infrastructure."
+    },
+    {
+      "cidr": "193.42.33.0/24",
+      "country": "Seychelles",
+      "country_code": "SC",
+      "asn": "AS-unknown",
+      "reputation": {"tor_exit": false, "hosting": true, "abuse_score": 70},
+      "notes": "Range used to host phishing / credential-harvesting pages."
+    },
+    {
+      "cidr": "8.8.8.0/24",
+      "country": "United States",
+      "country_code": "US",
+      "asn": "AS15169 Google LLC",
+      "reputation": {"tor_exit": false, "hosting": false, "abuse_score": 0},
+      "notes": "Google public DNS. Benign; included as a known-good control."
+    }
+  ]
+}

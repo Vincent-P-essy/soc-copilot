@@ -1,0 +1,86 @@
+{
+  "_comment": "Local NVD-shaped CVE cache. In production lookup_cve() would query the NVD 2.0 API and cache results here; the offline cache lets the agent (and tests) run without network access. CVSS scores/vectors are real published values.",
+  "cves": [
+    {
+      "id": "CVE-2024-6387",
+      "aliases": ["regreSSHion"],
+      "service": "ssh",
+      "product": "OpenSSH",
+      "affected": "< 9.8p1 (8.5p1–9.7 on glibc Linux)",
+      "cvss": 8.1,
+      "severity": "HIGH",
+      "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "kev": false,
+      "summary": "Signal handler race condition in OpenSSH's sshd allows unauthenticated remote code execution as root on glibc-based Linux.",
+      "published": "2024-07-01",
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2024-6387"]
+    },
+    {
+      "id": "CVE-2023-38408",
+      "service": "ssh",
+      "product": "OpenSSH ssh-agent",
+      "affected": "< 9.3p2",
+      "cvss": 9.8,
+      "severity": "CRITICAL",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "kev": false,
+      "summary": "Remote code execution in the OpenSSH ssh-agent forwarding feature via loading of attacker-controlled PKCS#11 modules.",
+      "published": "2023-07-19",
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2023-38408"]
+    },
+    {
+      "id": "CVE-2021-44228",
+      "aliases": ["Log4Shell"],
+      "service": "http",
+      "product": "Apache Log4j 2",
+      "affected": "2.0-beta9 to 2.15.0 (excl. 2.12.2)",
+      "cvss": 10.0,
+      "severity": "CRITICAL",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "kev": true,
+      "summary": "JNDI features in Log4j do not protect against attacker-controlled LDAP/JNDI lookups, enabling unauthenticated remote code execution.",
+      "published": "2021-12-10",
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2021-44228"]
+    },
+    {
+      "id": "CVE-2024-3400",
+      "service": "vpn",
+      "product": "Palo Alto PAN-OS GlobalProtect",
+      "affected": "10.2, 11.0, 11.1 (specific maintenance releases)",
+      "cvss": 10.0,
+      "severity": "CRITICAL",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "kev": true,
+      "summary": "Command injection in the GlobalProtect feature of PAN-OS allows an unauthenticated attacker to execute arbitrary code with root privileges.",
+      "published": "2024-04-12",
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2024-3400"]
+    },
+    {
+      "id": "CVE-2022-1388",
+      "service": "http",
+      "product": "F5 BIG-IP iControl REST",
+      "affected": "16.1.x, 15.1.x, 14.1.x, 13.1.x (pre-fix)",
+      "cvss": 9.8,
+      "severity": "CRITICAL",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "kev": true,
+      "summary": "Authentication bypass in the BIG-IP iControl REST interface permits unauthenticated command execution.",
+      "published": "2022-05-05",
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2022-1388"]
+    },
+    {
+      "id": "CVE-2023-34362",
+      "aliases": ["MOVEit Transfer"],
+      "service": "http",
+      "product": "Progress MOVEit Transfer",
+      "affected": "< 2021.0.6, < 2021.1.4, < 2022.0.4, < 2022.1.5, < 2023.0.1",
+      "cvss": 9.8,
+      "severity": "CRITICAL",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "kev": true,
+      "summary": "SQL injection in MOVEit Transfer enables an unauthenticated attacker to access the database and stage remote code execution.",
+      "published": "2023-06-02",
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2023-34362"]
+    }
+  ]
+}

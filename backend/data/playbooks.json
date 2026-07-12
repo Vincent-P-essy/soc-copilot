@@ -1,0 +1,72 @@
+{
+  "_comment": "Incident-response playbook knowledge base. Each playbook maps to one or more ATT&CK techniques and provides ordered analyst actions. suggest_playbook() matches on technique id or free-text keywords.",
+  "playbooks": [
+    {
+      "id": "IR-001",
+      "name": "Reconnaissance / Scanning Response",
+      "techniques": ["T1046"],
+      "keywords": ["port scan", "scanning", "recon", "sweep", "nmap"],
+      "steps": [
+        "Confirm the scan source and scope from firewall/IDS logs.",
+        "Determine whether any scanned service responded or exposed a banner.",
+        "Rate-limit or block the source at the perimeter if it has no business need.",
+        "Check threat intel for the source IP/ASN reputation.",
+        "Watch for follow-on exploitation against the scanned services over the next 24h."
+      ]
+    },
+    {
+      "id": "IR-002",
+      "name": "Credential Attack Response",
+      "techniques": ["T1110", "T1110.001", "T1110.003", "T1078"],
+      "keywords": ["brute force", "password spray", "credential", "login", "authentication", "account takeover"],
+      "steps": [
+        "Identify targeted accounts and whether any authentication succeeded.",
+        "Block the source IP if it is external and has no business justification.",
+        "Force-reset credentials for any account with a successful or near-miss auth.",
+        "Enforce/verify MFA on affected accounts.",
+        "Review authentication logs for the last 72h for lateral movement or impossible-travel logins.",
+        "If a service account is involved, rotate its secret and audit its usage."
+      ]
+    },
+    {
+      "id": "IR-003",
+      "name": "Web Exploitation Response",
+      "techniques": ["T1190"],
+      "keywords": ["sql injection", "sqli", "rce", "path traversal", "ssrf", "web exploit", "vulnerability"],
+      "steps": [
+        "Identify the targeted endpoint and payload class from web/WAF logs.",
+        "Confirm whether the WAF blocked the request or it reached the application.",
+        "Check application/database logs for evidence of successful injection or data return.",
+        "Patch or virtual-patch the vulnerable component; confirm affected versions against CVE data.",
+        "If data access is confirmed, initiate the data-breach process and preserve evidence."
+      ]
+    },
+    {
+      "id": "IR-004",
+      "name": "Malware / C2 Response",
+      "techniques": ["T1071", "T1486"],
+      "keywords": ["malware", "beacon", "c2", "command and control", "ransomware", "powershell"],
+      "steps": [
+        "Isolate the affected endpoint(s) from the network immediately.",
+        "Capture volatile evidence (memory, running processes, network connections) before reimaging.",
+        "Extract and pivot on the file hash and C2 IP/domain across the estate.",
+        "Block the C2 indicators at DNS/proxy/firewall.",
+        "Scope lateral movement and identify patient zero.",
+        "Reimage from a known-good baseline; rotate any credentials used on the host."
+      ]
+    },
+    {
+      "id": "IR-005",
+      "name": "Phishing Response",
+      "techniques": ["T1566"],
+      "keywords": ["phishing", "phish", "malicious email", "credential harvest", "lure"],
+      "steps": [
+        "Pull the message from all recipient mailboxes (purge).",
+        "Identify who received, opened, and clicked; prioritise clickers.",
+        "Reset credentials for any user who submitted credentials to the lure page.",
+        "Block the sender domain/URL at the mail gateway and web proxy.",
+        "Report the indicators to threat intel and check for reuse across incidents."
+      ]
+    }
+  ]
+}
