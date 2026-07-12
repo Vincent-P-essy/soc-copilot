@@ -1,0 +1,22 @@
+# Web / API
+flask==3.0.3
+flask-sock==0.7.0
+simple-websocket==1.0.0
+gunicorn==22.0.0
+
+# Auth
+PyJWT==2.8.0
+
+# Memory
+redis==5.0.4
+
+# Observability
+prometheus-client==0.20.0
+
+# LLM (optional at runtime — the agent falls back to a deterministic planner)
+anthropic==0.39.0
+
+# Dev / test
+pytest==8.2.0
+pytest-cov==5.0.0
+ruff==0.4.4
