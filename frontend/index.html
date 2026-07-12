@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SOC Copilot</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Login -->
+    <section id="login" class="login">
+      <div class="login-card">
+        <h1>SOC&nbsp;Copilot</h1>
+        <p class="subtitle">Tier-1 triage assistant</p>
+        <form id="login-form">
+          <label>Username<input id="username" value="analyst" autocomplete="username" /></label>
+          <label>Password<input id="password" type="password" value="analyst" autocomplete="current-password" /></label>
+          <button type="submit">Sign in</button>
+          <p id="login-error" class="error"></p>
+        </form>
+        <p class="hint">Demo accounts: <code>analyst / analyst</code>, <code>admin / admin</code></p>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <section id="chat" class="chat hidden">
+      <header class="topbar">
+        <div class="brand">SOC&nbsp;Copilot</div>
+        <div class="status">
+          <span id="planner-badge" class="badge"></span>
+          <span id="user-badge" class="badge"></span>
+          <button id="reset-btn" title="Clear conversation memory">Reset</button>
+          <button id="logout-btn">Sign out</button>
+        </div>
+      </header>
+
+      <main id="messages" class="messages">
+        <div class="msg system">
+          <p>Describe an alert or paste indicators. Try:</p>
+          <ul class="examples">
+            <li data-example="Brute force alert on 185.220.101.44, 47 attempts in 3 min against SSH, user admin">Brute-force from a suspicious IP</li>
+            <li data-example="We saw sqlmap-style requests to /api/search from 45.155.205.233. Was this range seen before?">SQLi attempts from a hosting range</li>
+            <li data-example="Endpoint beaconing to 91.240.118.172 after an encoded PowerShell run. What is this and what do I do?">PowerShell + C2 beacon</li>
+          </ul>
+        </div>
+      </main>
+
+      <footer class="composer">
+        <textarea id="input" rows="1" placeholder="Describe the alert…"></textarea>
+        <button id="send-btn">Send</button>
+      </footer>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
