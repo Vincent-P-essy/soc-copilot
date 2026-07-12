@@ -12,7 +12,7 @@ import hashlib
 import hmac
 import os
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 import jwt
@@ -65,7 +65,7 @@ def authenticate(username: str, password: str) -> User:
 
 
 def issue_token(user: User, ttl_hours: int = 12) -> str:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     payload = {
         "sub": user.username,
         "role": user.role,

@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import asdict, dataclass, field
-from functools import lru_cache
+from functools import cache
 from pathlib import Path
 from typing import Any
 
@@ -31,7 +31,7 @@ def phrase_in(phrase: str, text: str) -> bool:
     return re.search(rf"(?<![a-z0-9]){re.escape(phrase)}(?![a-z0-9])", text.lower()) is not None
 
 
-@lru_cache(maxsize=None)
+@cache
 def load_dataset(name: str) -> dict[str, Any]:
     """Load and cache a JSON dataset from ``backend/data``."""
     with (DATA_DIR / f"{name}.json").open(encoding="utf-8") as fh:

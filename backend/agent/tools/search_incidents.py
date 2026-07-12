@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 from .base import Tool, ToolParam, ToolResult, load_dataset
@@ -34,7 +34,7 @@ class SearchIncidentsTool(Tool):
         query_l = (query or "").strip().lower()
         cutoff = None
         if days:
-            cutoff = datetime.now(timezone.utc) - timedelta(days=int(days))
+            cutoff = datetime.now(UTC) - timedelta(days=int(days))
 
         matches: list[dict[str, Any]] = []
         for inc in incidents:
@@ -44,10 +44,10 @@ class SearchIncidentsTool(Tool):
                     continue
             hay_iocs = _iocs_flat(inc)
             text = f"{inc['title']} {inc['summary']}".lower()
-            if ioc_l and not any(ioc_l in v or v in ioc_l for v in hay_iocs):
-                # IOC provided but not found in this incident
-                if ioc_l not in text:
-                    continue
+            # If an IOC was given, require it in the incident's indicators or text.
+            ioc_missing = ioc_l and not any(ioc_l in v or v in ioc_l for v in hay_iocs)
+            if ioc_missing and ioc_l not in text:
+                continue
             if query_l and query_l not in text:
                 continue
             if not ioc_l and not query_l:
