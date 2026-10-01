@@ -14,6 +14,12 @@ real-time chat interface with transparent, cited reasoning.
 
 ---
 
+## Running example
+
+![soc-copilot running locally](docs/screenshots/application.png)
+
+A local analyst conversation using the built-in planner and documentation-range IP addresses. No external model service was called. [Commands and test results](docs/verification.md).
+
 ## Why this exists
 
 An L1 analyst who receives *"brute-force alert on `185.220.101.44`, 47 attempts in 3 minutes,
