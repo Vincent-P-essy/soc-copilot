@@ -1,6 +1,6 @@
 # SOC Copilot
 
-**A ReAct security-operations agent that automates ~40% of L1 SOC triage** — context
+**A ReAct security-operations agent that supports L1 SOC triage** — context
 enrichment, event correlation, MITRE ATT&CK mapping, and remediation playbooks — through a
 real-time chat interface with transparent, cited reasoning.
 
@@ -13,12 +13,6 @@ real-time chat interface with transparent, cited reasoning.
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
-
-## Running example
-
-![soc-copilot running locally](docs/screenshots/application.png)
-
-A local analyst conversation using the built-in planner and documentation-range IP addresses. No external model service was called. [Commands and test results](docs/verification.md).
 
 ## Why this exists
 
